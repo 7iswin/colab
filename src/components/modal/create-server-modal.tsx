@@ -10,7 +10,7 @@ import { z } from "zod"
 import FileUpload from "@/components/file-upload"
 import axios  from "axios"
 import { useRouter } from "next/navigation"
-import { useModal } from "../../../hooks/use-modal-store"
+import { useModal } from "@/../../hooks/use-modal-store"
 
 
 const formSchema = z.object({
