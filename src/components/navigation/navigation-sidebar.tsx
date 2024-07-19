@@ -5,7 +5,7 @@ import { UserButton } from "@clerk/nextjs"
 import { redirect } from "next/navigation"
 import { Separator } from "@/components/ui/separator"
 import { ScrollArea } from "@/components/ui/scroll-area"
-import { ModeToggle } from "@/components/provider/dark-mode-toggle"
+import { ModeToggle } from "@/components/dark-mode-toggle"
 
 
 
@@ -32,7 +32,7 @@ export default async function NavigationSidebar(){
     })
     return(
         <div
-        className="space-y-4 flex flex-col items-center h-full text-primary w-full dark:bg-[#1E1F22] py-3"
+        className="space-y-4 flex flex-col items-center h-full text-primary w-full dark:bg-[#1E1F22] bg-[#E3E5E8] py-3"
 
         >
             <NavigationAction />

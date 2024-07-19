@@ -61,6 +61,7 @@ export default async function ServerSidebar({
     const audioChannel = server?.channel.filter((channel) => channel.type === ChannelType.AUDIO )
     const videoChannel = server?.channel.filter((channel) => channel.type === ChannelType.VIDEO )
     const member = server?.member.filter((member) => member.profileId !== profile.id)
+    const userRole = server?.member.find((member) => member.profileId === profile.id)?.role
     if(!server){
         return redirect("/")
     }
@@ -179,8 +180,9 @@ export default async function ServerSidebar({
                         </div>
                     </div>
                 )}
-                {!!member?.length && (
+                {!!member?.length && (userRole !== MemberRole.GUEST) && (
                     <div className="mb-2">
+                        
                         <ServerSection 
                         sectionType="members"
                         channelType={ChannelType.VIDEO}
@@ -189,7 +191,6 @@ export default async function ServerSidebar({
                         label="Members"
                         />
                         <div className="space-y-[2px]">
-
                             {member?.map((member) =>(
                                 <ServerMember
                                 key={member.id}

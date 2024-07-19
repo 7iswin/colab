@@ -16,6 +16,7 @@ import axios  from "axios"
 
 import { useParams, useRouter } from "next/navigation"
 import { ChannelType } from "@prisma/client"
+import { useEffect } from "react"
 
 
 const formSchema = z.object({
@@ -26,21 +27,32 @@ const formSchema = z.object({
 
 export default function CreateChannelModal(){
     
-    const form = useForm({
-        resolver: zodResolver(formSchema),
-        defaultValues:{
-            name:"",
-            type: ChannelType.Text,
-        }
-    })
     
-
-    const { isOpen, onClose, type } = useModal()
+    
+    const { isOpen, onClose, type,data } = useModal()
     const isModalOpen = isOpen && type === "createChannel"
+    const { channelType } = data
     const handleClose = () =>{
         form.reset()
         onClose()
     }
+    
+    const form = useForm({
+        resolver: zodResolver(formSchema),
+        defaultValues:{
+            name:"",
+            type: channelType || ChannelType.TEXT ,
+        }
+    })
+
+    useEffect(() => {
+        if(channelType){
+            form.setValue("type",channelType)
+        }
+        else{
+            form.setValue("type",ChannelType.TEXT)
+        }
+    },[channelType,form])
 
     const params = useParams()
     const router = useRouter()

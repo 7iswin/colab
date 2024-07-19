@@ -1,5 +1,6 @@
-import { MemberRole } from "@prisma/client"
-import { Hash, Mic, ShieldAlert, ShieldCheck, ShieldQuestion, Video, } from "lucide-react"
+
+import { ChannelType, MemberRole } from "@prisma/client"
+import { Hash, Mic, ShieldAlert, ShieldCheck, Video } from "lucide-react"
 
 export const server_role = [
     {
@@ -22,17 +23,17 @@ export const server_role = [
 
 export const channel_type =[
     {
-        value:"TEXT",
+        value:ChannelType.TEXT,
         label:"TEXT CHANNEL",
         icon:Hash,
     },
     {
-        value:"AUDIO",
+        value:ChannelType.AUDIO,
         label:"AUDIO CHANNEL",
         icon:Mic,
     },
     {
-        value:"VIDEO",
+        value:ChannelType.VIDEO,
         label:"VIDEO CHANNEL",
         icon:Video,
     }

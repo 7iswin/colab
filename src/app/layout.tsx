@@ -10,15 +10,18 @@ import {
   SignedOut,
   UserButton,
 } from '@clerk/nextjs'
-import { ThemeProvider } from "@/components/provider/theme-provider";
 import { cn } from "@/lib/utils";
+
+import { ThemeProvider } from "@/components/provider/theme-provider";
 import ModalProvider from "@/components/provider/modal-provider";
+import QueryProvider from "@/components/provider/query-provider";
+import { SocketProvider } from "@/components/provider/socket-provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Colab App",
-  description: "You can colaboration your idea's",
+  description: "You can colaboration your idea's"
 };
 
 export default function RootLayout({
@@ -54,8 +57,12 @@ export default function RootLayout({
          
          
           </SignedIn>
-            {children}
-            <ModalProvider /> 
+            <SocketProvider>
+              <ModalProvider /> 
+              <QueryProvider>
+                {children}
+              </QueryProvider>
+            </SocketProvider>
             </ThemeProvider>
         </body>
       </html>

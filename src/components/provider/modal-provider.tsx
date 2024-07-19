@@ -9,6 +9,10 @@ import MemberModal from "@/components/modal/members-modal"
 import CreateChannelModal from "@/components/modal/create-channel-modal"
 import LeaveServerModal from "@/components/modal/leave-server-modal"
 import DeleteServerModal from "@/components/modal/delete-server-modal"
+import DeleteChannelModal from "@/components/modal/delete-channel-modal"
+import EditChannelModal from "@/components/modal/edit-channel-modal"
+import MessageFileModal from "@/components/modal/message-file-modal"
+import DeleteMessageModal from "@/components/modal/delete-message-modal"
 
 export default function ModalProvider(){
     const [ isMounted, setIsMounted ] = useState(false)
@@ -30,6 +34,10 @@ export default function ModalProvider(){
             <CreateChannelModal />
             <LeaveServerModal />
             <DeleteServerModal />
+            <DeleteChannelModal />
+            <EditChannelModal />
+            <MessageFileModal />
+            <DeleteMessageModal />
         </>
     )
 }

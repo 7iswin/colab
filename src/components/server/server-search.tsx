@@ -39,14 +39,17 @@ export default function SearchServer({data}:SearchServerProps){
     const onClick = ({id,type}:{id:string,type: "channel" | "member"}) =>{
         try{
             if(type === "member"){
-                return router.push(`/services/${params.serverId}/conversations/${id}`)
+                return router.push(`/servers/${params?.serverId}/conversations/${id}`)
             }
             if(type === "channel"){
-                return router.push(`/servers/${params.serverId}/channels/${id}`)
+                return router.push(`/servers/${params?.serverId}/channels/${id}`)
             }
         }catch(err){
             console.log(err)
-            return router.push(`/servers/${params.serverId}`)
+            return router.push(`/servers/${params?.serverId}`)
+        }
+        finally{
+            SetIsOpen(false)
         }
     }
 
@@ -80,24 +83,21 @@ export default function SearchServer({data}:SearchServerProps){
                         if(!data?.length) return null
 
                         return (
-                            <>
+                            <React.Fragment key={label}>
                                 {type === "member" && (
-                                    <CommandSeparator key={label} />
-                                )}
-                                <CommandGroup key={label} heading={`${label} (${data.length})`}>
-                                    {
-                                        data?.map(({ id, icon, name}) => {
-                                            return(
-                                                <CommandItem key={id} className="space-x-1" onSelect={() => onClick({id,type})}>
-                                                        {icon}
-                                                        <span>{name}</span>
-                                                    </CommandItem>
-                                            )
-                                        })
-                                    }
+                                    <CommandSeparator key={`${label}-sep`} />
+                                )
+                                }
 
+                                <CommandGroup key={`${label}-group`} heading={`${label} (${data.length})`}>
+                                    {data?.map(({ id, icon, name }) => (
+                                        <CommandItem key={id} className="space-x-1" onSelect={() => onClick({ id, type })}>
+                                            {icon}
+                                            <span>{name}</span>
+                                        </CommandItem>
+                                    ))}
                                 </CommandGroup>
-                            </>
+                            </React.Fragment>
                         )
                     })}
                 </CommandList>
