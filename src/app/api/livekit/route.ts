@@ -20,6 +20,8 @@ export async function GET(req: NextRequest) {
   const apiSecret = process.env.LIVEKIT_API_SECRET;
   const wsUrl = process.env.NEXT_PUBLIC_LIVEKIT_URL;
 
+  
+
   if (!apiKey || !apiSecret || !wsUrl) {
     return NextResponse.json(
       { error: "Server misconfigured" },
