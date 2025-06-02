@@ -49,13 +49,7 @@ export default function RootLayout({
           </SignedOut>
        
           <SignedIn>
-            
-          {/* <header className="flex-justify-between">
-            <UserButton  afterSignOutUrl="/" />
-            </header> */}
-          {/* <ModeToggle /> */}
-         
-         
+          
           </SignedIn>
             <SocketProvider>
               <ModalProvider /> 
